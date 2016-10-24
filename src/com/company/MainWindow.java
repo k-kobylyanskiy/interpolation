@@ -65,7 +65,7 @@ public class MainWindow {
         // Listener для слайдера
 
         slider = new JSlider();
-        slider.setMaximum(25);
+        slider.setMaximum(15);
         slider.setMinimum(2);
         slider.setValue(2);
         slider.addChangeListener(new ChangeListener() {

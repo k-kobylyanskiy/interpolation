@@ -38,7 +38,7 @@ public class Buttons {
         add.setActionCommand("add");
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ае){
-            field.createPoints(count, "sin");
+            field.createPoints(count, "s");
             }
         });
 

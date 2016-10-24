@@ -52,13 +52,14 @@ public class PointActions extends JPanel {
     public void createPoints(Integer count, String choice){
         System.out.println("Creating " + count + " points");
         for (int i = 0; i < count; i++){
-            listOfPoints.add(new Points(i*20 + 100, i*20+100));
-            /*
-            Высчитать координаты точки
-            Добавить точку с этой координатой
-            Нарисовать в области точку
-             */
-            System.out.println("x " + i*20);
+            int d = 1300/count;
+            if(choice.equals("x")) {
+                listOfPoints.add(new Points((i * d + d / 2), 600 - i * d / 2));
+            } else if (choice.equals("sin")){
+                listOfPoints.add(new Points(i * d + d/2, (400 - (int)(Math.sin(i * d + d/2)*200))));
+            } else {
+                listOfPoints.add(new Points(i * d + d/2, (630 - (int)(Math.sqrt(i * d + d/2)*17))));
+            }
         }
         printList();
         repaint();
