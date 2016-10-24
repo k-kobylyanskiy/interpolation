@@ -1,6 +1,8 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ public class Buttons {
 
     PointActions field = new PointActions();
     Integer count;
+    String functionSelector;
 
 
     public PointActions getField(){
@@ -27,7 +30,7 @@ public class Buttons {
     // Массив строк исходных функций для интерполяции
 
     String functions[] = {
-      "sin(x)", "e^x", "x^2"
+      "sin(x)", "sqrt(x)", "x"
     };
 
     Buttons() {
@@ -38,7 +41,7 @@ public class Buttons {
         add.setActionCommand("add");
         add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ае){
-            field.createPoints(count, "s");
+            field.createPoints(count, functionSelector);
             }
         });
 
@@ -68,7 +71,13 @@ public class Buttons {
         // Инициализация листа
 
         functionsList = new JList<>(functions);
-
+        functionsList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                functionSelector = functionsList.getSelectedValue();
+                System.out.println(functionSelector);
+            }
+        });
 
     }
 

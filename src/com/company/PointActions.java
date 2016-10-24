@@ -25,6 +25,14 @@ public class PointActions extends JPanel {
                 x = e.getX();
                 y = e.getY();
                 coordinates.setText("(" + (x - 650) + ";" + (315 - y) + ")" );
+                for(Points point: listOfPoints){
+                    if ((x > point.getX() && x < (point.getX()+15)) && (y > point.getY() && y < (point.getY()+15))){
+                        listOfPoints.remove(point);
+                        repaint();
+                        return;
+                    }
+                }
+
                 listOfPoints.add(new Points(x, y));
                 repaint();
             }
@@ -55,7 +63,7 @@ public class PointActions extends JPanel {
             int d = 1300/count;
             if(choice.equals("x")) {
                 listOfPoints.add(new Points((i * d + d / 2), 600 - i * d / 2));
-            } else if (choice.equals("sin")){
+            } else if (choice.equals("sin(x)")){
                 listOfPoints.add(new Points(i * d + d/2, (400 - (int)(Math.sin(i * d + d/2)*200))));
             } else {
                 listOfPoints.add(new Points(i * d + d/2, (630 - (int)(Math.sqrt(i * d + d/2)*17))));
