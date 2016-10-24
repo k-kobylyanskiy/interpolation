@@ -60,7 +60,7 @@ public class Buttons {
         interpolation = new JButton("Интерполировать");
         interpolation.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ае){
-                label.setText("Интерполяция");
+                field.interpolate();
             }
         });
 
