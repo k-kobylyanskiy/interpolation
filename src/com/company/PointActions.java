@@ -83,7 +83,6 @@ public class PointActions extends JPanel {
                 functionsPoints.add(new Points(i,  - 300 - (int) (Math.sin(i) * 200)));
             } else {
                 functionsPoints.add(new Points(i, -(int) (Math.sqrt(i) * 17)));
-
             }
 
         }
