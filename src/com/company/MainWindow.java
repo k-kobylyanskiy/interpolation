@@ -94,12 +94,6 @@ public class MainWindow {
         mainWindow.add(field);
         mainWindow.add(menu);
 
-        /*
-         * Эта функциональная часть печатает в stdout список кнопок,
-         * пришедших из коллекции listOfButtons и вызывает метод addButton
-         * для добавления в mainWindow всех кнопок
-         */
-
         listOfButtons.stream().map(button -> {
             System.out.println(button.getActionCommand() + " button have been added to main window");
             button.setFont(font);
