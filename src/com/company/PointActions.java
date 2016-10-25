@@ -148,7 +148,6 @@ public class PointActions extends JPanel {
                 }
                 lagrangePol += (basicsPol * (listOfPoints.get(j).getY()));
             }
-            System.out.println("pixel: " + i + " function: " + lagrangePol);
             interpolatedPoints.add(new Points((int)i, (int)lagrangePol));
         }
     }
