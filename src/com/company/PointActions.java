@@ -65,8 +65,6 @@ public class PointActions extends JPanel {
     // метод создает на экране точки после нажатия на кнопку Добавить
 
     public void createPoints(Integer count, String choice) {
-        System.out.println("Creating " + count + " points");
-
         // Добавление точек
 
         int d = 1300 / count;
@@ -91,13 +89,12 @@ public class PointActions extends JPanel {
                 functionsPoints.add(new Points(i, -(int) (Math.sqrt(i) * 17)));
             }
         }
+        interpolate();
         repaint();
     }
 
     public void paintComponent(Graphics g) {
-        printList();
         super.paintComponent(g);
-
 
         Graphics2D g2 = (Graphics2D)g;
         BasicStroke pen1 = new BasicStroke(3);
@@ -147,12 +144,6 @@ public class PointActions extends JPanel {
         }
     }
 
-    public void printList() {
-        System.out.println("Printing all points");
-        for (Points point : listOfPoints) {
-            System.out.println(point.getX() + ";" + point.getY());
-        }
-    }
 
     public void clearField() {
         listOfPoints.removeAll(listOfPoints);
@@ -162,7 +153,6 @@ public class PointActions extends JPanel {
     }
 
     public void interpolate() {
-        System.out.println("Starting interpolation");
         interpolatedPoints.removeAll(interpolatedPoints);
         calculateLagrange();
         repaint();

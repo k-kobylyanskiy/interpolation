@@ -13,7 +13,6 @@ public class Buttons {
     Integer count;
     String functionSelector;
 
-
     public PointActions getField(){
         return field;
     }
@@ -22,8 +21,6 @@ public class Buttons {
 
     JButton add;
     JButton choose;
-    JButton interpolation;
-    JLabel label = new JLabel("1");
     JList<String> functionsList;
     private ArrayList<JButton> buttons = new ArrayList<>();
 
@@ -50,23 +47,12 @@ public class Buttons {
         choose = new JButton("Очистить поле");
         choose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ае){
-                label.setText("Очистка");
+              //  label.setText("Очистка");
                 field.clearField();
             }
         });
 
         buttons.add(choose);
-
-        interpolation = new JButton("Интерполировать");
-        interpolation.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ае){
-                field.interpolate();
-            }
-        });
-
-        buttons.add(interpolation);
-
-        System.out.println("All buttons have been initialized");
 
         // Инициализация листа
 
@@ -81,8 +67,6 @@ public class Buttons {
 
     }
 
-    // Методы
-
     public JList getList(){
         return functionsList;
     }
@@ -91,7 +75,4 @@ public class Buttons {
         return buttons;
     }
 
-    public JLabel getLabel(){
-        return label;
-    }
 }

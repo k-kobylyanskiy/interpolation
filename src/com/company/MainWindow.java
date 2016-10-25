@@ -5,20 +5,17 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.ArrayList;
-import java.awt.GraphicsEnvironment;
 
 public class MainWindow {
 
     // Инициализация графических компонентов
     public JFrame mainWindow;
     public ArrayList<JButton> listOfButtons;
-    public JLabel label;
     public JLabel chooseFunction;
     public JLabel pointsCountMsg;
     public JLabel pointsCount;
     public JPanel menu;
     public PointActions field;
-    public JPanel graph;
     public JSlider slider;
     public JList<String> functionList;
 
@@ -44,11 +41,6 @@ public class MainWindow {
         menu.setPreferredSize(new Dimension(1300, 60));
         menu.setBackground(Color.decode("#212121"));
 
-        // Создание панели для графика
-        //graph = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        //graph.setPreferredSize(new Dimension(1300, 690));
-        //graph.setBackground(Color.decode("#2980b9"));
-
         Buttons buttons = new Buttons();
 
         field = buttons.getField();
@@ -58,7 +50,6 @@ public class MainWindow {
 
         Font font = new Font("Century Gothic", Font.PLAIN, 15);
 
-        label = buttons.getLabel();
         chooseFunction = new JLabel("Выборка точек");
         chooseFunction.setForeground(Color.WHITE);
         chooseFunction.setFont(font);
@@ -69,7 +60,6 @@ public class MainWindow {
 
         pointsCountMsg = new JLabel("Количество точек:");
         pointsCountMsg.setForeground(Color.WHITE);
-        pointsCountMsg.setFont(font);
         pointsCountMsg.setFont(font);
 
         listOfButtons = buttons.getListOfButtons();
@@ -100,15 +90,12 @@ public class MainWindow {
         menu.add(slider);
         menu.add(pointsCount);
 
-        //graph.add(label);
-
         field.add(field.coordinates);
 
         mainWindow.add(field);
         mainWindow.add(menu);
 
         listOfButtons.stream().map(button -> {
-            System.out.println(button.getActionCommand() + " button have been added to main window");
             button.setFont(font);
             button.setBackground(Color.decode("#ffffff"));
             return button;
