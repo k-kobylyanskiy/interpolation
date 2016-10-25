@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 public class PointActions extends JPanel {
 
     public JLabel coordinates = new JLabel("(0;0)");
@@ -17,10 +18,12 @@ public class PointActions extends JPanel {
     ArrayList<Points> functionsPoints;
 
     PointActions() {
+        coordinates.setForeground(Color.decode("#ffffff"));
+
         listOfPoints = new ArrayList<>();
         functionsPoints = new ArrayList<>();
         interpolatedPoints = new ArrayList<>();
-        this.setPreferredSize(new Dimension(1300, 630));
+        this.setPreferredSize(new Dimension(1300, 656));
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -95,25 +98,41 @@ public class PointActions extends JPanel {
         printList();
         super.paintComponent(g);
 
-        // График исходной функции
 
-        for (Points i : functionsPoints) {
-            g.setColor(Color.orange);
-            g.fillOval(i.getX(), -i.getY(), 3, 3);
-        }
+        Graphics2D g2 = (Graphics2D)g;
+        BasicStroke pen1 = new BasicStroke(3);
+        g2.setStroke(pen1);
 
-        // Результат интерполяции
+        Iterator<Points> it = functionsPoints.iterator();
 
-        Iterator<Points> it = interpolatedPoints.iterator();
         Points p1 = new Points(0,0);
         Points p2;
-        g.setColor(Color.BLACK);
+
+        // График исходной функции
+        g2.setColor(Color.decode("#16a085"));
+
         if(it.hasNext()){
             p1 = it.next();
         }
         while (it.hasNext()){
             p2 = it.next();
-            g.drawLine(p1.getX(),-p1.getY(),p2.getX(),-p2.getY());
+            g2.drawLine(p1.getX(),-p1.getY(),p2.getX(),-p2.getY());
+            if (it.hasNext()){
+                p1 = p2;
+                p2 = it.next();
+            }
+        }
+
+        // Результат интерполяции
+        it = interpolatedPoints.iterator();
+        g2.setColor(Color.decode("#3498db"));
+
+        if(it.hasNext()){
+            p1 = it.next();
+        }
+        while (it.hasNext()){
+            p2 = it.next();
+            g2.drawLine(p1.getX(),-p1.getY(),p2.getX(),-p2.getY());
             if (it.hasNext()){
                 p1 = p2;
                 p2 = it.next();
@@ -123,7 +142,7 @@ public class PointActions extends JPanel {
         // Исходные точки
 
         for (Points point : listOfPoints) {
-            g.setColor(Color.blue);
+            g.setColor(Color.decode("#c0392b"));
             g.fillOval(point.getX()-5, - point.getY()-5, 10, 10);
         }
     }
