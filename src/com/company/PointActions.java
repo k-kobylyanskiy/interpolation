@@ -84,7 +84,6 @@ public class PointActions extends JPanel {
             } else {
                 functionsPoints.add(new Points(i, -(int) (Math.sqrt(i) * 17)));
             }
-
         }
         repaint();
     }
