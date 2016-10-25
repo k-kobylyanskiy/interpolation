@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PointActions extends JPanel {
 
@@ -29,12 +30,14 @@ public class PointActions extends JPanel {
                 for (Points point : listOfPoints) {
                     if (((x > point.getX()) && x < (point.getX() + 10)) && ((-y < point.getY()) && (-y > (point.getY() - 10)))) {
                         listOfPoints.remove(point);
+                        interpolate();
                         repaint();
                         return;
                     }
                 }
 
                 listOfPoints.add(new Points(x, (-y)));
+                interpolate();
                 repaint();
             }
 
@@ -66,7 +69,7 @@ public class PointActions extends JPanel {
         int d = 1300 / count;
         for (int i = 0; i < count; i++) {
             if (choice.equals("x")) {
-                listOfPoints.add(new Points((i * d + d / 2), i * d / 2));
+                listOfPoints.add(new Points((i * d + d / 2), -i * d / 2));
             } else if (choice.equals("sin(x)")) {
                 listOfPoints.add(new Points(i * d + d / 2, - 300 - (int) (Math.sin(i * d + d / 2) * 200)));
             } else {
@@ -78,11 +81,11 @@ public class PointActions extends JPanel {
 
         for (int i = 0; i < 1300; i++){
             if (choice.equals("x")){
-                functionsPoints.add(new Points((i + d / 2), i/2));
+                functionsPoints.add(new Points((i + d / 2), - i/2));
             } else if (choice.equals("sin(x)")){
-                functionsPoints.add(new Points(i,  - 300 - (int) (Math.sin(i) * 200)));
+                functionsPoints.add(new Points(i + d / 2,  - 300 - (int) (Math.sin(i + d/2) * 200)));
             } else {
-                functionsPoints.add(new Points(i, -(int) (Math.sqrt(i) * 17)));
+                functionsPoints.add(new Points(i+ d/2, -(int) (Math.sqrt(i + d/2) * 17)));
             }
         }
         repaint();
@@ -101,9 +104,20 @@ public class PointActions extends JPanel {
 
         // Результат интерполяции
 
-        for (Points i : interpolatedPoints) {
-            g.setColor(Color.black);
-            g.fillOval(i.getX(), - i.getY(), 10, 10);
+        Iterator<Points> it = interpolatedPoints.iterator();
+        Points p1 = new Points(0,0);
+        Points p2;
+        g.setColor(Color.BLACK);
+        if(it.hasNext()){
+            p1 = it.next();
+        }
+        while (it.hasNext()){
+            p2 = it.next();
+            g.drawLine(p1.getX(),-p1.getY(),p2.getX(),-p2.getY());
+            if (it.hasNext()){
+                p1 = p2;
+                p2 = it.next();
+            }
         }
 
         // Исходные точки
