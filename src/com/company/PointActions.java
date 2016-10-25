@@ -68,24 +68,24 @@ public class PointActions extends JPanel {
 
         int d = 1300 / count;
         for (int i = 0; i < count; i++) {
-            if (choice.equals("x")) {
-                listOfPoints.add(new Points((i * d + d / 2), -i * d / 2));
-            } else if (choice.equals("sin(x)")) {
-                listOfPoints.add(new Points(i * d + d / 2, - 300 - (int) (Math.sin(i * d + d / 2) * 200)));
+            if (choice.equals("-x/2")) {
+                listOfPoints.add(new Points((i * d), -i * d / 2));
+            } else if (choice.equals("-e^(0.005x)")) {
+                listOfPoints.add(new Points(i * d, - (int)Math.pow(Math.E, (double)i*d*0.005)));
             } else {
-                listOfPoints.add(new Points(i * d + d / 2,  -(int) (Math.sqrt(i * d + d / 2) * 17)));
+                listOfPoints.add(new Points(i * d,  -(int) (Math.sqrt(i * d) * 17)));
             }
         }
 
         // Высчитывание координат точек для построения графика исходной функции
 
         for (int i = 0; i < 1300; i++){
-            if (choice.equals("x")){
-                functionsPoints.add(new Points((i + d / 2), - i/2));
-            } else if (choice.equals("sin(x)")){
-                functionsPoints.add(new Points(i + d / 2,  - 300 - (int) (Math.sin(i + d/2) * 200)));
+            if (choice.equals("-x/2")){
+                functionsPoints.add(new Points((i), - i/2));
+            } else if (choice.equals("-e^(0.005x)")){
+                functionsPoints.add(new Points(i,  - (int)Math.pow(Math.E, (double)i*0.005)));
             } else {
-                functionsPoints.add(new Points(i+ d/2, -(int) (Math.sqrt(i + d/2) * 17)));
+                functionsPoints.add(new Points(i, -(int) (Math.sqrt(i) * 17)));
             }
         }
         repaint();

@@ -30,7 +30,7 @@ public class Buttons {
     // Массив строк исходных функций для интерполяции
 
     String functions[] = {
-      "sin(x)", "sqrt(x)", "x"
+      "-e^(0.005x)", "-17*sqrt(x)", "-x/2"
     };
 
     Buttons() {
